@@ -1,4 +1,4 @@
-import requests,sys,time
+import requests,sys
 from multiprocessing.pool import ThreadPool
 
 def get_time(id,che=False):
