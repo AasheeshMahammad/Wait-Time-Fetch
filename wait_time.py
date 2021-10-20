@@ -16,7 +16,7 @@ def get_time(id,che=False):
             if glob['id'] > id:
                 glob['id']=id
     except:
-        get_time(id)
+        return get_time(id)
 
 def get_sub():
     a=requests.get(url)
