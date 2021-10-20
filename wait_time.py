@@ -10,8 +10,8 @@ def get_time(id,che=False):
             return a.text.split("\n")[-1]
         print(id,min,end='\r')
         if glob['max']==min:
-            glob['stop']=True
             if 'id' not in glob:
+                glob['stop']=True
                 glob['id']=id
             if glob['id'] > id:
                 glob['id']=id
