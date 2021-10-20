@@ -18,8 +18,7 @@ def get_time(id,che=False):
     except:
         return get_time(id)
 
-def get_sub():
-    a=requests.get(url)
+def get_sub(a):
     id=int(a.text.split("\n")[0].split(": ")[-1])
     max_time=int(a.text.split("\n")[-1].split(": ")[-1].split(" minutes")[0])
     Threadcount=75
@@ -40,7 +39,7 @@ def main():
     glob={}
     print(a.text)
     if 'num' in sys.argv:
-        get_sub()
+        get_sub(a)
     for i in range(1,len(sys.argv)):
         if sys.argv[i].isdigit():
             id=int(sys.argv[i])
