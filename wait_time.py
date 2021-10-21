@@ -5,9 +5,9 @@ def get_time(id,che=False):
     try:
         dat={"_id":id}
         a=requests.post(url,json=dat)
-        min=int(a.text.split("\n")[-1].split(": ")[-1].split(" minutes")[0])
+        min=int(a.text.split("\n")[1].split(": ")[-1].split(" minutes")[0])
         if che:
-            return a.text.split("\n")[-1]
+            return a.text.split("\n")[1]
         print(id,min,end='\r')
         if glob['max']==min:
             if 'id' not in glob:
@@ -20,7 +20,7 @@ def get_time(id,che=False):
 
 def get_sub(a):
     id=int(a.text.split("\n")[0].split(": ")[-1])
-    max_time=int(a.text.split("\n")[-1].split(": ")[-1].split(" minutes")[0])
+    max_time=int(a.text.split("\n")[1].split(": ")[-1].split(" minutes")[0])
     Threadcount=75
     glob['max']=max_time
     glob['stop']=False
@@ -35,7 +35,11 @@ def get_sub(a):
 def main():
     global url,glob
     url='http://34.134.176.176:5000/wait'
-    a=requests.get(url)
+    try:
+        a=requests.get(url)
+    except:
+        print("Failed to Make Connection")
+        return
     glob={}
     print(a.text)
     if 'num' in sys.argv:
